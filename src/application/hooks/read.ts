@@ -1,16 +1,11 @@
-import { type Input, read } from "@/application/use-cases/read";
-import { useMutation } from "react-query";
+import { read } from "@/application/use-cases/read";
+import { useQuery } from "react-query";
 
 export const useRead = () => {
-  const {
-    data,
-    mutateAsync: execute,
-    isLoading: loading,
-  } = useMutation({
-    mutationFn: async ({ body }: Input) => {
-      const response = await read({
-        body,
-      });
+  const { data, isLoading: loading } = useQuery({
+    queryKey: ["read"],
+    queryFn: async () => {
+      const response = await read();
 
       if (response.isFailure()) {
         return response.value.error;
@@ -22,7 +17,6 @@ export const useRead = () => {
 
   return {
     data,
-    execute,
     loading,
   };
 };

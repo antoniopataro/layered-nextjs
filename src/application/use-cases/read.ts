@@ -2,10 +2,6 @@ import { api } from "@/core/ioc/container";
 import { HttpStatus } from "@/core/protocols/http";
 import { type Either, failure, success } from "@/utils/either";
 
-export type Input = {
-  body?: null;
-};
-
 type Failure = { error: string };
 
 type Success = {
@@ -14,9 +10,8 @@ type Success = {
 
 type Output = Either<Failure, Success>;
 
-export const read = async ({ body }: Input): Promise<Output> => {
+export const read = async (): Promise<Output> => {
   const { data, status } = await api.request<Failure | Success>({
-    body: JSON.stringify(body),
     method: "GET",
     url: "/",
   });
