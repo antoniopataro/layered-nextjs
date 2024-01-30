@@ -12,7 +12,7 @@ export const ContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        {providers.reduce((prev, Provider) => {
+        {providers.reverse().reduce((prev, Provider) => {
           return <Provider>{prev}</Provider>;
         }, children)}
       </QueryClientProvider>
