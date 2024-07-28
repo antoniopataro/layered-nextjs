@@ -1,4 +1,4 @@
-import { CookiesStorage } from '@/infra/kv/cookies-storage';
+import { CookiesStorage } from "@/core/infra/kv/cookies-storage";
 
 type Config = {
   ACCESS_TOKEN_KEY: string;
@@ -7,7 +7,7 @@ type Config = {
 export class AuthService {
   constructor(
     private readonly config: Config,
-    private readonly cookiesStorage: CookiesStorage
+    private readonly cookiesStorage: CookiesStorage,
   ) {}
 
   getAccessToken() {

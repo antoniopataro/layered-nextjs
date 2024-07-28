@@ -1,8 +1,8 @@
 import { ApiService } from "@/application/services/api-service";
 import { AuthService } from "@/application/services/auth-service";
-import { FetchHttpClient } from "@/infra/http/fetch-http-client";
-import { CookiesStorage } from "@/infra/kv/cookies-storage";
-import { LocalStorage } from "@/infra/kv/local-storage";
+import { FetchHttpClient } from "@/core/infra/http/fetch-http-client";
+import { CookiesStorage } from "@/core/infra/kv/cookies-storage";
+import { LocalStorage } from "@/core/infra/kv/local-storage";
 
 import { envs } from "../config/envs";
 
@@ -13,7 +13,7 @@ const authService = new AuthService(
   {
     ACCESS_TOKEN_KEY: "accessToken",
   },
-  cookiesStorage
+  cookiesStorage,
 );
 
 if (!envs.API_URL) {
@@ -27,5 +27,5 @@ export const api = new ApiService(
   {
     API_URL: envs.API_URL,
   },
-  fetchHttpClient
+  fetchHttpClient,
 );
